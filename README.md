@@ -4,7 +4,7 @@
 
 ## 项目结构
 
-*   `md/`: 存放源 Markdown 文件 (`.md`)。转换生成的 HTML 文件 (`.html`) 也会保存在此目录下。
+*   `md/`: 存放源 Markdown 文件 (`.md`)。默认情况下，转换生成的 HTML 文件 (`.html`) 将保存在 `html/` 目录中（可通过命令行参数更改）。
 *   `vscode-markdown-preview-enhanced/`: MPE 插件的源码仓库，作为本项目依赖的核心库。
 *   `convert_md.js`: Node.js 脚本，用于执行批量转换任务。
 
@@ -39,7 +39,21 @@
 node convert_md.js
 ```
 
-脚本会自动扫描 `md/` 目录下的所有 `.md` 文件，并逐一转换为同名的 `.html` 文件。
+脚本会自动扫描 `md/` 目录下的所有 `.md` 文件，并逐一转换为同名的 `.html` 文件，默认输出到 `html/` 目录。
+
+可用命令行参数：
+
+- `-i, --input <dir>` : 输入 Markdown 文件目录（默认: `md`）
+- `-o, --output <dir>`: 输出目录（默认: `html`）
+- `--offline <true|false>`: 是否内嵌资源（默认: `true`）
+- `--runAllCodeChunks <true|false>`: 是否在导出时运行代码块（默认: `false`）
+- `-h, --help` : 帮助
+
+例子：
+
+```bash
+node convert_md.js -i md -o html --offline true --runAllCodeChunks false
+```
 
 ## 自定义配置
 
